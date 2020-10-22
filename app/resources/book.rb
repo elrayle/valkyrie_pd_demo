@@ -8,9 +8,9 @@ class Book < Valkyrie::Resource
   attribute :author, Valkyrie::Types::Set
               .of(Valkyrie::Types::Strict::String)     # by using Strict, raises an error if any value is not a String
               .meta(ordered: true)
-  attribute :series, Valkyrie::Types::Strict::String   # by using Strict, raises an error if value is not a String
+  attribute :series, Valkyrie::Types::Strict::String   # by using Strict, raises an error if value is not a String OR value is nil
   attribute :member_ids, Valkyrie::Types::Array
-              .of(Valkyrie::Types::ID).optional
+              .of(Valkyrie::Types::ID).optional        # by using optional, will not raise an error when nil
   attribute :cover_art, Valkyrie::Types::Array
               .of(CoverArt)                            #   .of - expects instances of CoverArt as the value
 end
